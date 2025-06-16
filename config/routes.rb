@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # get "/first_recipe", controller: "recipes", action: "first_recipe"
-  get "/first_recipe" => "recipes#first_recipe"
-  get "/all_recipes" => "recipes#all_recipes"
+  get "/recipes" => "recipes#index"
+  post "/recipes" => "recipes#create"
+  patch "/recipes/:id" => "recipes#update"
+  delete "/recipes/:id" => "recipes#destroy"
 end
