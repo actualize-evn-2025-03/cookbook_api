@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   delete "/recipes/:id" => "recipes#destroy"
 
   post "/signup" => "users#create"
+
+  post "/login" => "sessions#create"
+  delete "/logout" => "sessions#destroy"
 end
