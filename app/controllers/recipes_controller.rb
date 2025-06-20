@@ -6,16 +6,21 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create!(
-      title: params["title"],
-      chef: params["chef"],
-      ingredients: params["ingredients"],
-      directions: params["directions"],
-      prep_time: params["prep_time"],
-      image_url: params["image_url"]
-    )
+    if current_user
+      @recipe = Recipe.create!(
+        title: params["title"],
+        chef: params["chef"],
+        ingredients: params["ingredients"],
+        directions: params["directions"],
+        prep_time: params["prep_time"],
+        image_url: params["image_url"],
+        user_id: current_user.id
+      )
 
-    render json: @recipe
+      render json: @recipe
+    else
+      render json: { message: "you must be signed in" }, status: :unauthorized
+    end
   end
 
   def update
